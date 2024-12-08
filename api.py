@@ -11,16 +11,22 @@ from io import BytesIO
 import mlflow
 import numpy as np
 import uvicorn
+import dagshub
+import os
+
 
 
 #Creating app instance
 app=FastAPI() 
 
-#load model from mlflow
-model_name="corn-borer-cnn"
-model_url=f"models:/{model_name}/@champion"
-model=mlflow.pyfunc.load_model(model_url)
+client = mlflow.MlflowClient()
 
+name = "corn-borer-cnn"
+version = client.get_latest_versions(name=name)[0].version
+model_uri = f'models:/{name}/{version}'
+
+
+model =mlflow.pyfunc.load_model(model_uri)
 #classes list
 classes={1:"Infested with corn borer", 0:"Currently not affected by corn borer"}
 
