@@ -1,0 +1,9 @@
+dill
+numpy
+tensorflow
+opencv
+pillow
+fastapi
+uvicorn
+
+-e .
