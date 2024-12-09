@@ -20,7 +20,8 @@ import sys
 #Creating app instance
 app=FastAPI() 
 try:
-    model=tf.keras.load_model("/model/model.keras")
+    with open("model/model.keras","rb") as f:
+        model=tf.keras.load_model(f)
 except Exception as e:
     raise CustomException(e,sys)
     
@@ -54,6 +55,5 @@ async def predict( file: UploadFile=File(...)):
     except Exception as e:
         raise CustomException(e,sys)
 
-if __name__=='__main__':
-    uvicorn.run(app,host='127.0.0.1',port=8000)
+
 
