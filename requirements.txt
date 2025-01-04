@@ -5,5 +5,7 @@ pillow
 fastapi
 uvicorn
 wget
+mlflow
+dagshub
 
 -e .
