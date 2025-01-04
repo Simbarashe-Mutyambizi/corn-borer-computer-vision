@@ -4,5 +4,6 @@ tensorflow
 pillow
 fastapi
 uvicorn
+wget
 
 -e .
