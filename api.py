@@ -13,6 +13,8 @@ import uvicorn
 import tensorflow as tf
 from src.exception import CustomException
 import sys
+import mlflow
+import dagshub
 
 
 
@@ -20,8 +22,10 @@ import sys
 #Creating app instance
 app=FastAPI() 
 try:
-    with open("model/model.keras","rb") as f:
-        model=tf.keras.load_model(f)
+    repo="my-first-repo"
+    name="Simbarashe-Mutyambizi"
+    dagshub.init(repo,name)
+    model=mlflow.pyfunc.load_model("mlflow-artifacts:/832dce8f9c7d4ada8db55eb01924cc2e/18c7324dd47f4336b53e63703690e4ef/artifacts/model")
 except Exception as e:
     raise CustomException(e,sys)
     
