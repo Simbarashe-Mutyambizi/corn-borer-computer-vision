@@ -6,10 +6,11 @@ Created on Sun Dec  8 11:18:53 2024
 """
 
 from fastapi import FastAPI, File, UploadFile
-import cv2
+from PIL import Image
 from io import BytesIO
 import numpy as np
 import uvicorn
+
 import tensorflow as tf
 from src.exception import CustomException
 import sys
@@ -39,7 +40,7 @@ classes={1:"Infested with corn borer", 0:"Currently not affected by corn borer"}
 #function to read image file, transform to np array, normalize and expand dimensions
 def load_image_tensor(data):
     try:
-        image_matrix=np.array(cv2.imread(BytesIO(data))) 
+        image_matrix=np.array(Image.open(BytesIO(data))) 
         image_matrix=image_matrix/255
         image_expanded=np.expand_dims(image_matrix, 0)
         return image_expanded
