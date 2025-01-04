@@ -21,6 +21,9 @@ import dagshub
 
 #Creating app instance
 app=FastAPI() 
+repo="my-first-repo"
+name="Simbarashe-Mutyambizi"
+dagshub.init(repo,name)
 try:
     repo="my-first-repo"
     name="Simbarashe-Mutyambizi"
