@@ -1,6 +1,6 @@
 dill
 numpy
-tensorflow
+pickle
 pillow
 fastapi
 uvicorn
