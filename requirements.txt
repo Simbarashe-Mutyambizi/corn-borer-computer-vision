@@ -2,6 +2,7 @@ dill
 numpy
 joblib
 pillow
+tensorflow
 fastapi
 uvicorn
 wget
