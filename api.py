@@ -22,14 +22,14 @@ import dagshub
 
 #Creating app instance
 app=FastAPI() 
-repo="my-first-repo"
-name="Simbarashe-Mutyambizi"
-dagshub.init(repo,name)
+
+
 try:
     repo="my-first-repo"
     name="Simbarashe-Mutyambizi"
+    dagshub.auth.add_app_token(token="c751b2e61cc4e223562618c9fa391e9b3c6ab576")
     dagshub.init(repo,name)
-    model=mlflow.pyfunc.load_model("mlflow-artifacts:/832dce8f9c7d4ada8db55eb01924cc2e/18c7324dd47f4336b53e63703690e4ef/artifacts/model")
+    ml=mlflow.pyfunc.load_model("mlflow-artifacts:/832dce8f9c7d4ada8db55eb01924cc2e/18c7324dd47f4336b53e63703690e4ef/artifacts/model")
 except Exception as e:
     raise CustomException(e,sys)
     
@@ -57,7 +57,7 @@ def index():
 async def predict( file: UploadFile=File(...)):
     try:
         image_value=load_image_tensor(await file.read())
-        class_value=np.argmax(model.predict(image_value))
+        class_value=np.argmax(ml.predict(image_value))
         prediction=classes[class_value]
         return {prediction}
     except Exception as e:
