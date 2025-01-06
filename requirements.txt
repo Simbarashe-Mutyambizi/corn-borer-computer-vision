@@ -1,9 +1,11 @@
 dill
 numpy
 tensorflow
-opencv
 pillow
 fastapi
 uvicorn
+wget
+mlflow
+dagshub
 
 -e .
