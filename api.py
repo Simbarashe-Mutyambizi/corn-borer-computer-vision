@@ -49,9 +49,9 @@ def load_image_tensor(data):
     
 
 #creating route path for api to load to
-#@app.get("/")
-#def index():
-    #return {"Welcome to the corn borer image classification api"}
+@app.get("/")
+def index():
+    return {"Welcome to the corn borer image classification api"}
 
 @app.post("predictions")
 async def predict( file: UploadFile=File(...)):
