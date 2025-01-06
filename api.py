@@ -11,7 +11,7 @@ from io import BytesIO
 import numpy as np
 import uvicorn
 
-import tensorflow as tf
+
 from src.exception import CustomException
 import sys
 import mlflow
