@@ -1,6 +1,6 @@
 dill
 numpy
-pickle
+joblib
 pillow
 fastapi
 uvicorn
