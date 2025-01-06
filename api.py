@@ -59,6 +59,7 @@ async def predict( file: UploadFile=File(...)):
         image_value=load_image_tensor(await file.read())
         class_value=np.argmax(ml.predict(image_value))
         prediction=classes[class_value]
+        print(prediction)
         return {prediction}
     except Exception as e:
         raise CustomException(e,sys)
