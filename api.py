@@ -42,6 +42,7 @@ def load_image_tensor(data):
     try:
         image_matrix=Image.open(BytesIO(data)).convert("RGB")
         image_matrix=image_matrix.resize((180,180))
+        image_matrix=np.array(image_matrix)
         image_matrix=image_matrix/255
         image_expanded=np.expand_dims(image_matrix, 0)
         return image_expanded
