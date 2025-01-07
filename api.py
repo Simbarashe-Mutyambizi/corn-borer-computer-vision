@@ -40,7 +40,8 @@ classes={1:"Infested with corn borer", 0:"Currently not affected by corn borer"}
 #function to read image file, transform to np array, normalize and expand dimensions
 def load_image_tensor(data):
     try:
-        image_matrix=np.array(Image.open(BytesIO(data))) 
+        image_matrix=Image.open(BytesIO(data)).convert("RGB")
+        image_matrix=image_matrix.resize((180,180))
         image_matrix=image_matrix/255
         image_expanded=np.expand_dims(image_matrix, 0)
         return image_expanded
