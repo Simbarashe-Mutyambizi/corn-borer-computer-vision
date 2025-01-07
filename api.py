@@ -53,14 +53,13 @@ def load_image_tensor(data):
 def index():
     return {"Welcome to the corn borer image classification api"}
 
-@app.post("predictions")
+@app.post("/predictions")
 async def predict( file: UploadFile=File(...)):
     try:
         image_value=load_image_tensor(await file.read())
         class_value=np.argmax(ml.predict(image_value))
         prediction=classes[class_value]
-        print(prediction)
-        return {prediction}
+        return {"prediction":prediction,"class":class_value}
     except Exception as e:
         raise CustomException(e,sys)
 
